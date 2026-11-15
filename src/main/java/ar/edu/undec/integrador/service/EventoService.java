@@ -1,7 +1,9 @@
 package ar.edu.undec.integrador.service;
 
+import ar.edu.undec.integrador.exception.ConflictoException;
 import ar.edu.undec.integrador.exception.NoEncontradoException;
 import ar.edu.undec.integrador.model.Evento;
+import ar.edu.undec.integrador.repository.EntradaRepository;
 import ar.edu.undec.integrador.repository.EventoRepository;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +13,11 @@ import java.util.List;
 public class EventoService {
 
     private final EventoRepository repository;
+    private final EntradaRepository entradaRepository;
 
-    public EventoService(EventoRepository repository) {
+    public EventoService(EventoRepository repository, EntradaRepository entradaRepository) {
         this.repository = repository;
+        this.entradaRepository = entradaRepository;
     }
 
     public List<Evento> listar(String nombre) {
@@ -44,6 +48,9 @@ public class EventoService {
 
     public void borrar(Long id) {
         Evento existente = obtener(id);
+        if (entradaRepository.existsByEventoId(id)) {
+            throw new ConflictoException("El evento tiene entradas y no se puede borrar");
+        }
         repository.delete(existente);
     }
 }

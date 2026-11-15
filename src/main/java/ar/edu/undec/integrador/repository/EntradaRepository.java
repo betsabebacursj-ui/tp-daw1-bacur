@@ -15,6 +15,8 @@ public interface EntradaRepository extends JpaRepository<Entrada, Long> {
 
     long countByEventoId(Long eventoId);
 
+    boolean existsByEventoId(Long eventoId);
+
     long countByEventoIdAndEstadoNot(Long eventoId, EstadoEntrada estado);
 
     boolean existsByEventoIdAndAsistenteIdAndEstadoIn(
