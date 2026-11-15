@@ -17,7 +17,7 @@ public class Evento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
     @NotBlank(message = "no debe estar vacío")
     private String nombre;
@@ -35,11 +35,11 @@ public class Evento {
     private Double precio;
 
     public Long getId () {
-        return Id;
+        return id;
     }
 
     public void setId (Long id) {
-        this.Id = id;
+        this.id = id;
     }
 
     public String getNombre () {
@@ -67,7 +67,5 @@ public class Evento {
         return precio;
     }
     public void setPrecio(Double precio) {
-        this.precio = precio;
-    }
-
+        this.precio = precio;}
 }
