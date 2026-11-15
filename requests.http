@@ -1,0 +1,29 @@
+### Crear evento
+POST http://localhost:8080/api/eventos
+Content-Type: application/json
+
+{ "nombre": "Teatro Colón", "fecha": "2026-12-20T21:00:00", "capacidad": 3, "precio": 5000 }
+
+### Listar eventos
+GET http://localhost:8080/api/eventos
+
+### Filtrar eventos por nombre
+GET http://localhost:8080/api/eventos?nombre=teatro
+
+### Obtener un evento
+GET http://localhost:8080/api/eventos/1
+
+### Modificar un evento
+PUT http://localhost:8080/api/eventos/1
+Content-Type: application/json
+
+{ "nombre": "Teatro Colón", "fecha": "2026-12-21T21:00:00", "capacidad": 5, "precio": 6000 }
+
+### Entradas de un evento
+GET http://localhost:8080/api/eventos/1/entradas
+
+### Ocupación de un evento
+GET http://localhost:8080/api/eventos/1/ocupacion
+
+### Borrar un evento
+DELETE http://localhost:8080/api/eventos/1
